@@ -31,11 +31,11 @@ function update_switch(){
   } else {
     my_switch.checked == false;
   }
-}
+};
 
 function startTimer() {
     setInterval(update_switch, 500);
-}
+};
 
 database.ref("switch").on("value", function(snapshot) {
 	texto.html(snapshot.val());
