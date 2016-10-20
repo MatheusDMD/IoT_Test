@@ -15,7 +15,7 @@ var liga = $("#liga");
 var desliga = $("#desliga");
 var my_switch = $("#myonoffswitch");
 
-switchs.on("click", function() {
+my_switch.on("click", function() {
   if(database.ref("/switch") == 0){
     database.ref("/switch").set(1);
     my_switch.checked = true;
@@ -25,20 +25,8 @@ switchs.on("click", function() {
   }
 });
 
-function update_switch(){
-  if(database.ref("/switch") == 1){
-    my_switch.checked == true;
-  } else {
-    my_switch.checked == false;
-  }
-};
-
-function startTimer() {
-    setInterval(update_switch, 500);
-};
-
-database.ref("switch").on("value", function(snapshot) {
-	texto.html(snapshot.val());
+database.ref("/switch").on("value", function(snapshot) {
+	my_switch.checked = snapshot.val();
 });
 
 desliga.on("click", function() {
