@@ -16,7 +16,7 @@ var desliga = $("#desliga");
 var my_switch = $("#myonoffswitch");
 
 my_switch.on("click", function() {
-  if(database.ref("/switch").val() == 0){
+  if(my_switch.checked == true){
     database.ref("/switch").set(1);
     my_switch.checked = true;
   } else {
