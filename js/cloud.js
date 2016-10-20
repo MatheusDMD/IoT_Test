@@ -16,7 +16,7 @@ var desliga = $("#desliga");
 var my_switch = $("#myonoffswitch");
 
 my_switch.on("click", function() {
-  if(database.ref("/switch") == 0){
+  if(database.ref("/switch").val() == 0){
     database.ref("/switch").set(1);
     my_switch.checked = true;
   } else {
@@ -25,8 +25,13 @@ my_switch.on("click", function() {
   }
 });
 
-database.ref("/switch").on("value", function(snapshot) {
-	my_switch.checked = snapshot.val();
+database.ref("switch").on("child_changed", function(snapshot) {
+  if(snapshot.val() == 1){
+      my_switch.checked = true;
+  }
+  if(snapshot.val() == 0) {
+    my_switch.checked = false;
+  }
 });
 
 desliga.on("click", function() {
